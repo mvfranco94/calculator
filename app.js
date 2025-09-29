@@ -1,11 +1,27 @@
+const container = document.querySelector("#container");
+const display = document.querySelector("#display");
+
 let number1 = 0;
 let number2 = 0;
-let operator = "";
+let operator = null;
 
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
+
+container.addEventListener("click", function (e) {
+  const target = e.target;
+  
+  if (target.type !== "submit") {
+    return;
+  }
+
+  if (target.value === "clear") {
+    display.value = "";
+    return;
+  }
+})
 
 function operate(operator, number1, number2) {
   switch (operator) {
@@ -19,18 +35,3 @@ function operate(operator, number1, number2) {
       return divide(number1, number2);
   }
 }
-
-number1 = 3;
-number2 = 2;
-
-operator = "+"
-console.log(`operate ${number1} ${operator} ${number2} : `, operate(operator, number1, number2));
-
-operator = "-"
-console.log(`operate ${number1} ${operator} ${number2} : `, operate(operator, number1, number2));
-
-operator = "*"
-console.log(`operate ${number1} ${operator} ${number2} : `, operate(operator, number1, number2));
-
-operator = "/"
-console.log(`operate ${number1} ${operator} ${number2} : `, operate(operator, number1, number2));
